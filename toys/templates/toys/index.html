@@ -1,0 +1,32 @@
+<title>toys check</title>
+<h1>トップページ</h1>
+{% for message in messages %}
+    {{message}}
+{% endfor %}
+<div>
+    <form action="" method="get">
+        <input name="query" value="{{ request.GET.query }}" type="text" />
+        <button type="submit">検索する</button>
+    </form>
+    <ul>
+        {% for tag in unique_tags %}
+            <li>{{ tag }}</li>
+        {% endfor %}
+    </ul>
+</div>
+<div>
+    {% for toy in object_list %}
+    <h4>おもちゃ名:{{ toy.name }}</h4>
+    <p>金額:{{ toy.price|default_if_none:"" }}円</p>
+    <p>購入日:{{ toy.date|default_if_none:"" }}</p>
+    <p>遊ぶ頻度:{{ toy.freq|default_if_none:"" }}</p>
+    <p>タグ:{{ toy.tags|default_if_none:"" }}</p>
+    {% if toy.image %}
+        <img src="{{ toy.image.url }}"  height="300">
+    {% endif %}
+    <a href="{% url 'toys:update' pk=toy.pk %}">更新する</a>
+    <a href="{% url 'toys:delete' pk=toy.pk %}">削除する</a>
+    {% endfor %}
+    <br>
+    <a href="{% url 'toys:register' %}">おもちゃ登録</a>
+</div>

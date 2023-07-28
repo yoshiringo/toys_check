@@ -1,0 +1,10 @@
+{% block main %}
+    <br>
+    <h1>登録ページ</h1>
+    <br>
+    <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">送信</button>
+    </form>
+    <a href="{% url 'toys:index' %}">トップページ</a>
+{% endblock %}
