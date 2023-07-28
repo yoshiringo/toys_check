@@ -8,11 +8,6 @@
         <input name="query" value="{{ request.GET.query }}" type="text" />
         <button type="submit">検索する</button>
     </form>
-    <ul>
-        {% for tag in unique_tags %}
-            <li>{{ tag }}</li>
-        {% endfor %}
-    </ul>
 </div>
 <div>
     {% for toy in object_list %}
